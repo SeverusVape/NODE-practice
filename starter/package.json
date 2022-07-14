@@ -1,0 +1,17 @@
+{
+    "name": "node-farm",
+    "version": "1.0.0",
+    "description": "node practice",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js"
+    },
+    "author": "Severus Vape",
+    "license": "ISC",
+    "dependencies": {
+        "slugify": "^1.6.5"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.19"
+    }
+}
