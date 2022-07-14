@@ -4,7 +4,7 @@
     "description": "node practice",
     "main": "index.js",
     "scripts": {
-        "start": "node index.js"
+        "start": "nodemon index.js"
     },
     "author": "Severus Vape",
     "license": "ISC",
