@@ -5,8 +5,10 @@ const http = require("http");
 const path = require("path");
 const url = require("url");
 
+const slugify = require("slugify");
+
 // ! SERVER
-const replaceTemplate = (temp, product) => {
+function replaceTemplate(temp, product) {
     let output = temp.replace(/{% PRODUCTNAME %}/g, product.productName);
     output = output.replace(/{% IMAGE %}/g, product.image);
     output = output.replace(/{% ORIGIN %}/g, product.from);
@@ -19,7 +21,7 @@ const replaceTemplate = (temp, product) => {
         output = output.replace(/{% NOT_ORGANIC %}/g, "not-organic");
 
     return output;
-};
+}
 
 const overviewTmpl = fs.readFileSync(
     `${__dirname}/pages/overview.html`,
@@ -33,6 +35,10 @@ const cartTmpl = fs.readFileSync(
 
 const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, "utf-8");
 const dataObject = JSON.parse(data);
+const slugs = dataObject.map((el) =>
+    slugify(el.productName, { lower: true, replacement: "-", trim: true })
+);
+console.log(slugs);
 
 const server = http.createServer((req, res) => {
     const { query, pathname } = url.parse(req.url, true);
